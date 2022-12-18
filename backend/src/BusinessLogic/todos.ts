@@ -1,8 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
-import { TodosAccess } from './todosAcess'
+import { TodosAccess } from '../DataLogic/todosAcess'
 import { TodoItem } from '../models/TodoItem'
 import { CreateTodoRequest } from '../requests/CreateTodoRequest'
-import { AttachmentUtils } from './attachmentUtils';
+import { AttachmentUtils } from '../helpers/attachmentUtils';
 const attachmentUtils = new AttachmentUtils();
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest';
 
