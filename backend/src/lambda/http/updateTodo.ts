@@ -4,7 +4,7 @@ import * as middy from 'middy';
 import { cors, httpErrorHandler } from 'middy/middlewares';
 import { UpdateTodoRequest } from '../../requests/UpdateTodoRequest';
 import { getUserId } from '../utils';
-import { updateTodo } from '../../helpers/todos';
+import { updateTodoBL } from '../../helpers/businessLogic';
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -14,7 +14,7 @@ export const handler = middy(
     return {
       statusCode: 204,
       body: JSON.stringify({
-        "item": await updateTodo(todoId, userId, updatedTodo)
+        "item": await updateTodoBL(todoId, userId, updatedTodo)
       }),
     };
   }
