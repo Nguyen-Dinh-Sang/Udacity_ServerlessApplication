@@ -1,8 +1,8 @@
-import * as AWS from 'aws-sdk'
-import { DocumentClient } from 'aws-sdk/clients/dynamodb'
-const AWSXRay = require('aws-xray-sdk')
-const XAWS = AWSXRay.captureAWS(AWS)
-import { TodoItem } from '../models/TodoItem'
+import * as AWS from 'aws-sdk';
+import { DocumentClient } from 'aws-sdk/clients/dynamodb';
+const AWSXRay = require('aws-xray-sdk');
+const XAWS = AWSXRay.captureAWS(AWS);
+import { TodoItem } from '../models/TodoItem';
 import { TodoUpdate } from '../models/TodoUpdate';
 
 export class TodosAccess {
@@ -28,7 +28,7 @@ export class TodosAccess {
         }).promise();
     }
 
-    async generateUploadUrl(todoId: string, userId: string) {
+    async createImageUrl(todoId: string, userId: string) {
         const attachmentUrl = `https://${process.env.ATTACHMENT_S3_BUCKET}.s3.amazonaws.com/${todoId}`;
         await this.documentClient.update({
             TableName: this.todoListTable,
