@@ -1,10 +1,21 @@
-import { TodosAccess } from './todosAcess'
+import { v4 as uuidv4 } from 'uuid';
+import { TodosAccess } from '../DataLogic/todosAcess'
 import { TodoItem } from '../models/TodoItem'
-import { AttachmentUtils } from './attachmentUtils';
+import { CreateTodoRequest } from '../requests/CreateTodoRequest'
+import { AttachmentUtils } from '../helpers/attachmentUtils';
 const attachmentUtils = new AttachmentUtils();
 import { UpdateTodoRequest } from '../requests/UpdateTodoRequest';
 
-export async function createTodo(newTodo: TodoItem): Promise<TodoItem> {
+export async function createTodo(model: CreateTodoRequest, userId: string): Promise<TodoItem> {
+    const newTodo = {
+        todoId : uuidv4(),
+        createdAt : new Date().toISOString(),
+        done : false,
+        userId : userId,
+        name : model.name,
+        dueDate : model.dueDate
+    } as TodoItem;
+
     return await new TodosAccess().createTodo(newTodo);
 }
 

@@ -3,13 +3,13 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import * as middy from 'middy';
 import { cors, httpErrorHandler } from 'middy/middlewares';
 import { getUserId } from '../utils';
-import { deleteTodoBL } from '../../helpers/businessLogic';
+import { deleteTodo } from '../../BusinessLogic/todos';
 
 export const handler = middy(
   async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     const todoId = event.pathParameters.todoId
     const userId = getUserId(event);
-    await deleteTodoBL(todoId, userId);
+    await deleteTodo(todoId, userId);
     return {
       statusCode: 204,
       body: JSON.stringify({
