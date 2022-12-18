@@ -3,7 +3,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import * as middy from 'middy';
 import { cors, httpErrorHandler } from 'middy/middlewares';
 import { getUserId } from '../utils';
-import { createAttachmentPresignedUrl } from '../../helpers/todos';
+import { createAttachmentPresignedUrlBL } from '../../helpers/businessLogic';
 
 
 export const handler = middy(
@@ -13,7 +13,7 @@ export const handler = middy(
       return {
         statusCode: 200,
         body: JSON.stringify({
-          "uploadUrl" : await createAttachmentPresignedUrl(todoId, userId)
+          "uploadUrl" : await createAttachmentPresignedUrlBL(todoId, userId)
         })
       };
     }
